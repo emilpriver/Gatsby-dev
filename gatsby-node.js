@@ -1,6 +1,5 @@
 const fetch = require("node-fetch")
 const path = require("path")
-const { createFilePath } = require("gatsby-source-filesystem")
 
 exports.sourceNodes = async ({
   actions: { createNode },
@@ -45,28 +44,6 @@ exports.sourceNodes = async ({
     },
   }
   createNode(DummyNewsResultNode)
-}
-
-exports.onCreateNode = async ({
-  node,
-  getNode,
-  actions: { createNodeField },
-}) => {
-  /**
-   * Generate posts
-   */
-  if (node.internal.type === `SanityPost`) {
-    const slug = createFilePath({
-      node,
-      getNode,
-      basePath: "pages/sanity",
-    })
-    createNodeField({
-      node,
-      name: `slug`,
-      value: slug,
-    })
-  }
 }
 
 exports.createPages = async ({ actions: { createPage }, graphql }) => {
