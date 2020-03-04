@@ -24,7 +24,6 @@ const StarWars = () => {
   `)
 
   const starwars = allStarwarsSpaceships();
-  console.log(starwars)
   return (
     <Layout>
       <SEO title="Star Wars" />
