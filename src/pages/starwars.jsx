@@ -8,7 +8,7 @@ import SEO from "../components/seo"
 /**
  * Querys
  */
-import { allStarwarsSpaceships } from '../hooks/query/starwars.jsx'
+import allStarwarsSpaceships from "../hooks/query/starwars"
 
 const StarWars = () => {
   const data = useStaticQuery(graphql`
@@ -23,19 +23,22 @@ const StarWars = () => {
     }
   `)
 
-  const starwars = allStarwarsSpaceships();
+  const starwars = allStarwarsSpaceships()
   return (
     <Layout>
       <SEO title="Star Wars" />
       <h1>Star Wars</h1>
-      <Img style={{maxHeight: 300}} fluid={data.placeholderImage.childImageSharp.fluid} />
+      <Img
+        style={{ maxHeight: 300 }}
+        fluid={data.placeholderImage.childImageSharp.fluid}
+      />
       {starwars.map(el => {
         return (
-          <div className="ship" style={{marginBottom: 50}} key={el.name}>
+          <div className="ship" style={{ marginBottom: 50 }} key={el.name}>
             <h2>{el.name}</h2>
             <span>{el.manufacturer}</span>
           </div>
-        )   
+        )
       })}
     </Layout>
   )

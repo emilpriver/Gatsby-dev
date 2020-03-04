@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-export const allStarwarsSpaceships = () => {
+const allStarwarsSpaceships = () => {
   const { starwars } = useStaticQuery(graphql`
     query {
       starwars: allStarwarsSpaceships {
@@ -32,3 +32,5 @@ export const allStarwarsSpaceships = () => {
   `)
   return starwars.nodes[0].results
 }
+
+export default allStarwarsSpaceships
