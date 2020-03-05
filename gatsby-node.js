@@ -1,6 +1,8 @@
 const fetch = require("node-fetch")
 const path = require("path")
 
+const { createFilePath } = require("gatsby-source-filesystem")
+
 exports.sourceNodes = async ({
   actions: { createNode },
   createContentDigest,
@@ -46,6 +48,28 @@ exports.sourceNodes = async ({
   createNode(DummyNewsResultNode)
 }
 
+// exports.onCreateNode = async ({
+//   node,
+//   getNode,
+//   actions: { createNodeField },
+// }) => {
+//   /**
+//    * Generate posts
+//    */
+//   if (node.internal.type === `SanityPost`) {
+//     const slug = createFilePath({
+//       node,
+//       getNode,
+//       basePath: "templates",
+//     })
+//     createNodeField({
+//       node,
+//       name: `slug`,
+//       value: slug,
+//     })
+//   }
+// }
+
 exports.createPages = async ({ actions: { createPage }, graphql }) => {
   const result = await graphql(`
     query {
@@ -76,7 +100,7 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
   result.data.allSanityPost.edges.forEach(({ node }) => {
     createPage({
       path: `/posts/${node.slug.current}`,
-      component: path.resolve(`./src/pages/sanity/slug.jsx`),
+      component: path.resolve(`./src/templates/sanity/blog/slug.jsx`),
       context: node,
     })
   })

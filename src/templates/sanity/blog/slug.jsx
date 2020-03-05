@@ -1,10 +1,10 @@
 import React from "react"
 import Img from "gatsby-image"
 
-import SEO from "../../components/seo"
-import Header from "../../components/header"
+import SEO from "../../../components/seo"
+import Header from "../../../components/header"
 
-import Styles from "../../styles/blog/sanity.module.scss"
+import Styles from "../../../styles/blog/sanity.module.scss"
 
 const Sanity = ({ pageContext: data }) => {
   return (
